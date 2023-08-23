@@ -1,8 +1,8 @@
 import numpy as np
 
 
-clock = np.matrix([[0, 1], [-1, 0]])
-counter = np.matrix([[0, -1], [1, 0]])
+clockwise = np.matrix([[0, 1], [-1, 0]])
+counter_clockwise = np.matrix([[0, -1], [1, 0]])
 
 
 def run(matrix, n_iters, positions):
@@ -15,14 +15,13 @@ def run(matrix, n_iters, positions):
         record.append(np.array(matrix))
         for a in agents:
             pos = positions[a]
-
             direction = directions[a]
             pos[:] = pos + direction
             pos %= dim
             if matrix[pos[0, 0], pos[1, 0]] == 0:
                 matrix[pos[0, 0], pos[1, 0]] = 1
-                direction[:] = clock * direction
+                direction[:] = clockwise * direction
             else:
                 matrix[pos[0, 0], pos[1, 0]] = 0
-                direction[:] = counter * direction
+                direction[:] = counter_clockwise * direction
     return record

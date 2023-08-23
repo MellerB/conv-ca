@@ -34,7 +34,7 @@ matrix = np.pad(matrix, (size - n) // 2, mode="constant", constant_values=(0))
 
 
 n_iters = 100
-automaton = Automaton(init_tensor=matrix, kernel=kernel, rule=rule, wrap=True)
+automaton = Automaton(init_matrix=matrix, kernel=kernel, rule=rule, wrap=True)
 record = automaton.run(n_iters)
 
 

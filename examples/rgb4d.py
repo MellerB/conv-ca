@@ -47,7 +47,7 @@ n_iters = 200
 matrix = np.random.choice(
     [0, RED, GREEN, BLUE], size=(size, size, size, size), p=[0.97, 0.01, 0.01, 0.01]
 )
-automaton = Automaton(init_tensor=matrix, kernel=kernel, rule=rule, wrap=True)
+automaton = Automaton(init_matrix=matrix, kernel=kernel, rule=rule, wrap=True)
 record = automaton.run(n_iters)
 
 record = np.array(record)

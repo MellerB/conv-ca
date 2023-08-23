@@ -48,7 +48,7 @@ matrix = np.random.choice(
 
 
 n_iters = 300
-automaton = Automaton(init_tensor=matrix, kernel=kernel, rule=rule, wrap=True)
+automaton = Automaton(init_matrix=matrix, kernel=kernel, rule=rule, wrap=True)
 record = automaton.run(n_iters)
 record = np.array(record)
 
@@ -61,10 +61,8 @@ record = record / 3
 
 disp = Display2D(
     record,
-    offscreen=False,
     mode="alternative",
     filename="video.mp4",
-    color="o4",
     fps=10,
     cut_invariant=True,
 )

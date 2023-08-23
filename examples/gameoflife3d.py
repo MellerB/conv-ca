@@ -35,7 +35,7 @@ matrix = np.random.choice([0, 1], size=(n, n, n), p=[1 - prop, prop])
 matrix = np.pad(matrix, (size - n) // 2, mode="constant", constant_values=(0))
 
 n_iters = 50
-automaton = Automaton(init_tensor=matrix, kernel=kernel, rule=rule)
+automaton = Automaton(init_matrix=matrix, kernel=kernel, rule=rule)
 record = automaton.run(n_iters)
 
 

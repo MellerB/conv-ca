@@ -71,7 +71,7 @@ matrix[2, size // 2 + 1] = HEAD
 matrix[3, size // 2 + 1] = TAIL
 
 n_iters = 50
-automaton = Automaton(init_tensor=matrix, kernel=kernel, rule=rule, wrap=True)
+automaton = Automaton(init_matrix=matrix, kernel=kernel, rule=rule, wrap=True)
 record = automaton.run(n_iters)
 record = np.array(record) / 3
 print(np.max(record))

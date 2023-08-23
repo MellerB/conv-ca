@@ -4,75 +4,15 @@ sys.path.append("..")
 from automaton import Automaton
 from display import Display4D
 import numpy as np
-import math
 
-kernel = [
-    [
-        [
-            [0.48503794, -0.28363992, -0.95879075],
-            [-0.71831252, -0.15248755, 0.70418111],
-            [-0.88951372, 0.3742031, 0.78803807],
-        ],
-        [
-            [0.01607992, -0.24785283, -0.33629931],
-            [-0.66785154, -0.97658612, 0.06638038],
-            [-0.53634891, -0.95142673, -0.067561],
-        ],
-        [
-            [-0.54824647, -0.35294857, 0.0179399],
-            [-0.51523764, -0.44325357, 0.61036275],
-            [-0.42067463, 0.80714054, 0.88530889],
-        ],
-    ],
-    [
-        [
-            [-0.56395482, -0.85197474, -0.79879858],
-            [-0.4959926, -0.35965593, -0.48915595],
-            [-0.2391842, -0.28399226, -0.97868846],
-        ],
-        [
-            [-0.84259516, -0.61351272, 0.784784],
-            [-0.55837635, 0.38729339, 0.47225528],
-            [-0.25637592, 0.71631639, 0.35781436],
-        ],
-        [
-            [-0.4689278, -0.70236574, -0.54239359],
-            [0.95388216, -0.66991282, 0.49086499],
-            [-0.49642454, 0.65722371, 0.5664595],
-        ],
-    ],
-    [
-        [
-            [0.15412002, -0.47325024, -0.8661795],
-            [-0.92967898, -0.01896803, -0.87562112],
-            [0.20002065, -0.80926546, 0.02608737],
-        ],
-        [
-            [-0.43036627, 0.33948191, 0.87096301],
-            [-0.66399249, -0.76499047, -0.47568088],
-            [-0.23858333, 0.41417671, -0.16683216],
-        ],
-        [
-            [0.69677322, 0.35194961, -0.53984917],
-            [0.46982908, -0.94797836, -0.20571199],
-            [-0.4195313, 0.39330974, 0.44010492],
-        ],
-    ],
-]
-
-
-# np.random.uniform(low = -1, high=1, size=(3,3,3,3))
-
-
-kernel = np.array(kernel).T / 3
+kernel = np.random.uniform(low=-1, high=1, size=(3, 3, 3, 3))
+print(kernel)
 kersum = np.sum(kernel)
 
 
 def rule(x):
-    return math.tanh(math.pi * max(x / kersum, 0))
+    return (np.sin(x / kersum) + 1) / 2
 
-
-print(kernel)
 
 n = 10
 prop = 0.1
@@ -80,10 +20,10 @@ prop = 0.1
 matrix = np.random.choice([0, 1], size=(n, n, n, n), p=[1 - prop, prop])
 
 
-n_iters = 180
-automaton = Automaton(init_tensor=matrix, kernel=kernel, rule=rule, wrap=False)
+n_iters = 50
+automaton = Automaton(init_matrix=matrix, kernel=kernel, rule=rule, wrap=False)
 record = automaton.run(n_iters)
 
 
-disp = Display4D(record, offscreen=True, fps=10)
+disp = Display4D(record, mode="slice", offscreen=True, fps=5)
 disp.draw_all()

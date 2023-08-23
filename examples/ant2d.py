@@ -70,7 +70,7 @@ matrix[size // 2, size // 2] = tl
 
 
 n_iters = 20000
-automaton = Automaton(init_tensor=matrix, kernel=kernel, rule=rule, wrap=True)
+automaton = Automaton(init_matrix=matrix, kernel=kernel, rule=rule, wrap=True)
 record = automaton.run(n_iters)
 record = np.array(record) / one
 
