@@ -1,4 +1,4 @@
-# conv-ca
+# conv-cellular-automata
 
 To run an example:
 
